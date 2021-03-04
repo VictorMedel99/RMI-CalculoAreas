@@ -22,9 +22,9 @@ public class Cliente {
         try {
             in = new Scanner(System.in);
             
-            InterfazRemotaGeneral<Circulo> circuloRemoto = (InterfazRemotaGeneral<Circulo>) Naming.lookup("//localhost/DaoCirculo");
+            InterfazRemotaGeneral<Circulo> circuloRemoto = (InterfazRemotaGeneral<Circulo>) Naming.lookup("//192.168.0.11/DaoCirculo");
             
-            InterfazRemotaGeneral<Cuadrado> cuadradoRemoto = (InterfazRemotaGeneral<Cuadrado>) Naming.lookup("//localhost/DaoCuadrado");
+            InterfazRemotaGeneral<Cuadrado> cuadradoRemoto = (InterfazRemotaGeneral<Cuadrado>) Naming.lookup("//192.168.0.11/DaoCuadrado");
             
             InterfazRemotaGeneral<TrianguloIsosceles> trianguloRemoto = (InterfazRemotaGeneral<TrianguloIsosceles>) Naming.lookup("//localhost/DaoTrianguloIsosceles");
 
@@ -37,7 +37,7 @@ public class Cliente {
                 System.out.println("█3- Area de un Triangulo Isoseles █");
                 System.out.println("███████████████████████████████████");
                 
-                System.out.println("Ingrese la opccion");
+                System.out.println("Ingrese la opción ");
                 int res = in.nextInt();
                 
                 switch(res){
@@ -68,16 +68,12 @@ public class Cliente {
                         break;
                     default:
                         System.out.println("Opccion Invalida");
-                        break;
-                       
-                }
-                
-                
-                
+                        break;                      
+                }  
             } while (rest);
         } catch (Exception e) {
+            e.printStackTrace();
         }
-
     }
 
     public static void main(String[] args) {

@@ -14,7 +14,7 @@ import java.rmi.Naming;
 public class Servidor {
     public Servidor(){
         try {
-            System.setProperty("java.rmi.server.codebase", "localhost");
+            System.setProperty("java.rmi.server.codebase", "192.168.0.11");
             
             InterfazRemotaGeneral<Circulo> circuloRemoto = new DaoCirculo();
             Naming.rebind("//localhost/DaoCirculo", circuloRemoto);
