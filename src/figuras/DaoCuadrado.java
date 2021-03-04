@@ -1,13 +1,13 @@
 package figuras;
 
 import java.rmi.RemoteException;
-import jdk.nashorn.internal.objects.annotations.Constructor;
+import java.rmi.server.UnicastRemoteObject;
 
 /**
  *
  * @author victorm
  */
-public class DaoCuadrado implements InterfazRemotaGeneral<Cuadrado>{
+public class DaoCuadrado extends UnicastRemoteObject implements InterfazRemotaGeneral<Cuadrado>{
     //poligono regular Cuadrado A=L*L
     Cuadrado cuadradoArea;
 

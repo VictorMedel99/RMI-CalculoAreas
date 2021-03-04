@@ -1,12 +1,13 @@
 package figuras;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 /**
  *
  * @author victorm
  */
-public class DaoTrianguloIsosceles implements InterfazRemotaGeneral<TrianguloIsosceles>{
+public class DaoTrianguloIsosceles extends UnicastRemoteObject implements InterfazRemotaGeneral<TrianguloIsosceles>{
     //poligono irregular triangulo isosceles b.sqrt(a²-b²)/4)/2
     TrianguloIsosceles trianguloIsoscelesArea;
 

@@ -1,12 +1,13 @@
 package figuras;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 /**
  *
  * @author victorm
  */
-public class DaoCirculo implements InterfazRemotaGeneral<Circulo>{
+public class DaoCirculo extends UnicastRemoteObject implements InterfazRemotaGeneral<Circulo>{
     //circulo A = π r² 
     Circulo circuloArea;
 
