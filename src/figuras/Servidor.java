@@ -16,16 +16,9 @@ public class Servidor {
         try {
             System.setProperty("java.rmi.server.codebase", "192.168.0.11");
             
-            InterfazRemotaGeneral<Circulo> circuloRemoto = new DaoCirculo();
-            Naming.rebind("//localhost/DaoCirculo", circuloRemoto);
-            
-             InterfazRemotaGeneral<Cuadrado> cuadradoRemoto = new DaoCuadrado();
-            Naming.rebind("//localhost/DaoCuadrado", cuadradoRemoto);
-            
-            InterfazRemotaGeneral<TrianguloIsosceles> trianguloRemoto = new DaoTrianguloIsosceles();
-            Naming.rebind("//localhost/DaoTrianguloIsosceles", trianguloRemoto);
-            
-            
+            InterfazRemota areas = new Areas();
+            Naming.rebind("//localhost/Areas", areas);
+         
             System.out.println("Servidor iniciado...");
         } catch (Exception e) {
             e.printStackTrace();

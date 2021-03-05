@@ -6,7 +6,6 @@
 package figuras;
 
 import java.rmi.Naming;
-import java.text.DecimalFormat;
 import java.util.Scanner;
 
 /**
@@ -14,21 +13,17 @@ import java.util.Scanner;
  * @author alberto
  */
 public class Cliente {
-
+    
     private double radio, lado, ladoA, ladoB;
     private Scanner in;
+    private String resp;
 
     public Cliente() {
         try {
             in = new Scanner(System.in);
-            
-           InterfazRemotaGeneral<Circulo> circuloRemoto = (DaoCirculo) Naming.lookup("//localhost/DaoCirculo");
-            
-            InterfazRemotaGeneral<Cuadrado> cuadradoRemoto = (DaoCuadrado) Naming.lookup("//localhost/DaoCuadrado");
-            
-            InterfazRemotaGeneral<TrianguloIsosceles> trianguloRemoto = (DaoTrianguloIsosceles) Naming.lookup("//localhost/DaoTrianguloIsosceles");
 
-            boolean rest = true;
+            InterfazRemota areasRemotas = (InterfazRemota) Naming.lookup("//localhost/Areas");
+            
             do {
                 System.out.println("███████████████MENU████████████████");
                 System.out.println("█            Opciones             █");
@@ -36,47 +31,47 @@ public class Cliente {
                 System.out.println("█2- Area de un Cuadrado           █");
                 System.out.println("█3- Area de un Triangulo Isoseles █");
                 System.out.println("███████████████████████████████████");
-                
+
                 System.out.println("Ingrese la opccion");
                 int res = in.nextInt();
-                
-                switch(res){
+
+                switch (res) {
+                    
                     case 1:
-                        Circulo circulo = new Circulo();
                         System.out.println("Ingrese el radio del circulo");
                         radio = in.nextDouble();
-                        circulo.setRadio(radio);
-                        System.out.println("El area del circulo es "+circuloRemoto.calcularArea(circulo));
+  
+                        System.out.println("El area del circulo es " + areasRemotas.calcularAreaCirculo(radio));
                         break;
+                        
                     case 2:
-                        Cuadrado cuadrado = new Cuadrado();
                         System.out.println("Ingrese el lado del cuadrado");
-                        radio = in.nextDouble();
-                        cuadrado.setLado(lado);
-                        System.out.println("El area del cuadrado es "+cuadradoRemoto.calcularArea(cuadrado));
+                        lado = in.nextDouble();
+                        System.out.println("El area del cuadrado es " + areasRemotas.calcularAreaCuadrado(lado));
                         break;
+                        
                     case 3:
-                        TrianguloIsosceles trianguloIsosceles = new TrianguloIsosceles();
+                        
                         System.out.println("Ingrese el lado A del triangulo");
                         ladoA = in.nextDouble();
                         
                         System.out.println("Ingrese el lado b del triangulo");
                         ladoB = in.nextDouble();
-                        trianguloIsosceles.setA(ladoA);
-                        trianguloIsosceles.setA(ladoB);
-                        System.out.println("El area del circulo es "+trianguloRemoto.calcularArea(trianguloIsosceles));
+                        
+                        System.out.println("El area del circulo es " + areasRemotas.calculaeAreaTrianguloIsosceles(ladoA,ladoB));
                         break;
                     default:
                         System.out.println("Opccion Invalida");
                         break;
-                       
                 }
+                System.out.println("Desea hacer otra operacion s = si\nn = no");
+                resp = in.next();
                 
                 
-                
-            } while (rest);
+
+            } while (resp.equals("s"));
         } catch (Exception e) {
-        System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
 
     }
